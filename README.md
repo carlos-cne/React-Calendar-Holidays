@@ -23,11 +23,11 @@ Outro desafio ainda é sobre o CSS no quesito animação. Estou estudando bastat
 
 Os próximos passos serão:
 
-> melhorar as animações.
-> Melhorar a estrutura de pastas e arquivos.
-> Revisar a lógica.
-> Responsividade.
-> Melhorar os controles.
+- melhorar as animações.
+- Melhorar a estrutura de pastas e arquivos.
+- Revisar a lógica.
+- Responsividade.
+- Melhorar os controles.
 
 ## Como rodar o projeto
 
