@@ -22,7 +22,7 @@ export async function getHolidays(selectedPeriod) {
   const year = selectedPeriod[0];
   try {
     const response = await fetch(
-      `https://getfestivo.com/v1/holidays?api_key=${1}&country=BR&year=${year}&month=${month}`
+      `https://getfestivo.com/v1/holidays?api_key=${API_KEY}&country=BR&year=${year}&month=${month}`
     );
     return await response.json();
   } catch (error) {

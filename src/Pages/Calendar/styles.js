@@ -49,11 +49,6 @@ export const MonthTitle = styled.h1`
   color: #fff;
 `;
 
-export const DayContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 420px;
-`;
 export const DayWrapper = styled.div`
   cursor: pointer;
   display: flex;
@@ -88,7 +83,7 @@ export const DayName = styled.label`
   letter-spacing: 0.7px;
 `;
 
-export const HolidayEvent = styled.div`
+export const HolidayTagContainer = styled.div`
   height: 12px;
   width: 100%;
   display: flex;
@@ -96,8 +91,46 @@ export const HolidayEvent = styled.div`
   margin-top: 3px;
 `;
 
-export const DayGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(7, 60px);
-  grid-auto-rows: 78px;
+export const HolidayDetail = styled.div`
+  position: relative;
+  height: 75px;
+  background: rgba(164, 164, 164, 1);
+  margin-top: 5px;
+  width: 420px;
+  border-radius: 4px;
+`;
+
+export const WeekRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 420px;
+`;
+
+export const HolidayName = styled.label`
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.5px;
+  padding: 2px 16px;
+  vertical-align: top;
+  color: #eee;
+`;
+
+export const ArrowHoliday = styled.div`
+  position: absolute;
+  top: -5px;
+  left: 387px;
+  margin-left: -2px;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 0 5px 5px 5px;
+  border-color: transparent transparent rgba(164, 164, 164, 1) transparent;
+  transition: all 0.7s ease;
+`;
+
+export const HolidayInfoBox = styled.div`
+  height: 75px;
+  padding: 7px 0;
+  overflow-y: auto;
+  overflow-x: hidden;
 `;

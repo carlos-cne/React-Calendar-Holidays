@@ -1,13 +1,8 @@
 import React from "react";
 import moment from "moment";
-import {
-  SelectMonth,
-  DayGrid,
-  MonthTitle,
-  ArrowRight,
-  ArrowLeft
-} from "./styles";
+import { SelectMonth, MonthTitle, ArrowRight, ArrowLeft } from "./styles";
 import { CalendarDays } from "./CalendarDays";
+import { PageLoading } from "../PageLoading";
 
 export function CalendarGrid(props) {
   return (
@@ -19,13 +14,19 @@ export function CalendarGrid(props) {
         </MonthTitle>
         <ArrowRight id="add" onClick={props.handleChangePeriod} />
       </SelectMonth>
-      {!props.isFetching && (
-        <DayGrid>
-          <CalendarDays
-            selectedPeriod={props.selectedPeriod}
-            holidays={props.holidays}
-          />
-        </DayGrid>
+      {props.isFetching ? (
+        <PageLoading />
+      ) : (
+        <CalendarDays
+          selectedPeriod={props.selectedPeriod}
+          holidays={props.holidays}
+          selectedRow={props.selectedRow}
+          selectedHoliday={props.selectedHoliday}
+          selectedDay={props.selectedDay}
+          handleClickDay={(row, holiday, day) =>
+            props.handleClickDay(row, holiday, day)
+          }
+        />
       )}
     </>
   );

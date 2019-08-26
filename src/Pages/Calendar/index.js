@@ -1,25 +1,8 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { Container } from "./styles";
-import { getHolidays } from "./helpFunctions";
 import { CalendarGrid } from "./CalendarGrid";
-
-const apiReturn = {
-  errors: null,
-  holidays: {
-    holidays: [
-      {
-        country: "BR",
-        date: "2019-08-11",
-        end: "2019-08-12T00:00:00.000Z",
-        name: "Father's Day",
-        public: false,
-        start: "2019-08-11T00:00:00.000Z",
-        type: "observance"
-      }
-    ]
-  }
-};
+import { getHolidays } from "./helpFunctions";
 
 export function Calendar() {
   const [selectedPeriod, setSelectedPeriod] = useState([
@@ -28,15 +11,17 @@ export function Calendar() {
   ]);
   const [isFetching, setIsFetching] = useState(true);
   const [holidays, setHolidays] = useState(null);
+  const [selectedRow, setSelectedRow] = useState(null);
+  const [selectedHoliday, setSelectedHoliday] = useState(null);
+  const [selectedDay, setSelectedDay] = useState(null);
 
   useEffect(() => {
+    setIsFetching(true);
+    setSelectedRow(null);
+    setSelectedHoliday(null);
+    setSelectedDay(null);
     async function fetchHolidays() {
-      // const holidays = await getHolidays(selectedPeriod);
-      const holidays = await new Promise((res, rej) => {
-        setTimeout(() => {
-          res(apiReturn);
-        }, 300);
-      });
+      const holidays = await getHolidays(selectedPeriod);
       setHolidays(holidays);
       setIsFetching(false);
       return;
@@ -56,6 +41,12 @@ export function Calendar() {
     }
   }
 
+  function handleClickDay(row, holiday, day) {
+    setSelectedRow(row);
+    setSelectedHoliday(holiday);
+    setSelectedDay(day);
+  }
+
   return (
     <Container>
       <CalendarGrid
@@ -63,6 +54,12 @@ export function Calendar() {
         handleChangePeriod={handleChangePeriod}
         holidays={holidays}
         isFetching={isFetching}
+        selectedRow={selectedRow}
+        selectedHoliday={selectedHoliday}
+        selectedDay={selectedDay}
+        handleClickDay={(row, holiday, day) =>
+          handleClickDay(row, holiday, day)
+        }
       />
     </Container>
   );
